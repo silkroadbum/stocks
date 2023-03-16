@@ -5,10 +5,12 @@
 body {
   margin: 0;
   padding: 0;
+  padding-top: 20px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
 }
 
 .table {
@@ -18,9 +20,16 @@ body {
   border: 1px solid #000000;
 }
 
+.table__title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
 .table__header {
   border: 1px solid #000000;
   padding: 5px;
+  background-color: #94bac5;
 }
 
 .table__cell {
