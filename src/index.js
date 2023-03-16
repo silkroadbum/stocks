@@ -8,7 +8,9 @@ import { fetchStocks } from './store/stock/stocksSlice';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-store.dispatch(fetchStocks());
+const token = process.env.REACT_APP_TOKEN;
+
+store.dispatch(fetchStocks(token));
 
 root.render(
   <Provider store={store}>
