@@ -65,7 +65,3 @@ body {
 .table__row:not(:last-child) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
-
-.table__cell--center {
-  text-align: center;
-}
