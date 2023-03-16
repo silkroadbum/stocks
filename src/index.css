@@ -8,8 +8,7 @@ html {
 
 body {
   margin: 0;
-  padding: 0;
-  padding-top: 20px;
+  padding: 20px 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -29,6 +28,7 @@ body {
 .table {
   max-width: 1200px;
   margin: 0 auto;
+  margin-bottom: 20px;
   border-collapse: collapse;
   border: 1px solid #000000;
   background-color: #fff;
@@ -64,4 +64,35 @@ body {
 
 .table__row:not(:last-child) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.button {
+  width: 70px;
+  height: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  background-color: #c1bc98;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: #aba784;
+}
+
+.button:active {
+  background-color: #c6c3a9;
+}
+
+.button--prev {
+  border-radius: 10px 0 0 10px;
+}
+
+.button--next {
+  border-radius: 0 10px 10px 0;
 }

@@ -4,7 +4,7 @@ import axios from 'axios';
 export const fetchStocks = createAsyncThunk('data/fetchStocks', async () => {
   try {
     const { data } = await axios.get(
-      'https://api.iex.cloud/v1/data/CORE/STOCK_COLLECTION/list?collectionName=mostactive&token=sk_82276cc4b29d483eb4ca6d9b5be4887f',
+      `https://cloud.iexapis.com/stable/stock/market/collection/tag?collectionName=Airlines&token=pk_2a93c869660e41f89847d3d0e2edd3d7`,
     );
     return data;
   } catch (error) {
