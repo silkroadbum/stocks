@@ -4,7 +4,6 @@ import { headers } from '../../const';
 function Table({ filteredStocks, step }) {
   return (
     <>
-      <h1 className="title">STOCKS</h1>
       <div className="table-wrapper">
         <table className="table">
           <thead>
