@@ -32,10 +32,10 @@ function App() {
   );
 
   return (
-    <div>
+    <div className="container">
       <Search handleChange={onChangeInput} value={inputValue} />
       {status === 'loading' ? (
-        <div className="container">
+        <div className="loader-wrapper">
           <Watch
             height="80"
             width="80"

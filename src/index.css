@@ -14,11 +14,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
-  background-color: #f7ebca;
+  background-color: #4c3361;
   min-height: 100%;
 }
 
 .container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.loader-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,11 +31,11 @@ body {
 }
 
 .search {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .search__field {
@@ -49,32 +54,52 @@ body {
 }
 
 .table {
-  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-  margin-bottom: 20px;
   border-collapse: collapse;
-  border: 1px solid #000000;
   background-color: #fff;
-  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
 }
 
-.table__title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 15px;
-  text-transform: uppercase;
+.table-wrapper {
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
 }
 
 .table__header {
   border-bottom: 1px solid #000000;
   padding: 5px;
-  background-color: #94bac5;
+  background-color: #346089;
+  height: 60px;
+  color: #ffffff;
 }
 
 .table__cell {
   height: 50px;
   padding: 5px;
   text-align: center;
+}
+
+.table__cell--xs-size {
+  width: 65px;
+}
+
+.table__cell--s-size {
+  width: 85px;
+}
+
+.table__cell--m-size {
+  width: 115px;
+}
+
+.table__cell--x-size {
+  width: 150px;
+}
+
+.table__cell--xl-size {
+  width: 240px;
 }
 
 .table__row {
@@ -98,24 +123,28 @@ body {
 .button {
   width: 70px;
   height: 40px;
-  border: 1px solid rgba(0, 0, 0, 0.4);
-  background-color: #c1bc98;
+  outline: none;
+  border: none;
+  /* border: 1px solid #fff; */
+  background-color: #ffffff;
   cursor: pointer;
   font-weight: bold;
+  border-radius: 35px;
+  box-shadow: 0 4px 6px rgb(65 132 144 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
+  transition: box-shadow 0.2s;
 }
 
 .button:hover {
-  background-color: #aba784;
+  transition: all 0.2s;
+  box-shadow: 0 7px 14px rgb(65 132 144 / 10%), 0 3px 6px rgb(0 0 0 / 8%);
 }
-
 .button:active {
-  background-color: #c6c3a9;
+  background-color: #808080;
 }
 
-.button--prev {
-  border-radius: 10px 0 0 10px;
-}
-
-.button--next {
-  border-radius: 0 10px 10px 0;
+.button:disabled {
+  background-color: #eee;
+  border-color: #eee;
+  color: #444;
+  cursor: not-allowed;
 }
