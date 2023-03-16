@@ -12,7 +12,7 @@ function Row({
   currency,
 }) {
   return (
-    <tr>
+    <tr className="table__row">
       <td className="table__cell table__cell--center">{index}</td>
       <td className="table__cell">{symbol}</td>
       <td className="table__cell">{companyName}</td>
