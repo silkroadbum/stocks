@@ -25,6 +25,7 @@ function App() {
 
   const onChangeInput = ({ target }) => {
     setInputValue(target.value);
+    setStep(0);
   };
 
   const filteredStocks = stocks.filter((item) =>
