@@ -1,16 +1,20 @@
-// import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { updateList } from '../../store/stocks/stocksSlice';
 
 import Row from '../row/row';
 import { headers } from '../../const';
 
-function Table({ filteredStocks, step, inputValue }) {
+function Table({ step, inputValue }) {
+  const dispatch = useDispatch();
+  const { stocks } = useSelector((state) => state.stocks);
+
   const handleOnDragEnd = (result) => {
-    const items = Array.from(filteredStocks);
+    const items = Array.from(stocks);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
-    filteredStocks = [...items];
+    dispatch(updateList(items));
   };
 
   return (
@@ -31,7 +35,7 @@ function Table({ filteredStocks, step, inputValue }) {
             <Droppable droppableId="table__body">
               {(provided) => (
                 <tbody className="table__body" {...provided.droppableProps} ref={provided.innerRef}>
-                  {filteredStocks
+                  {stocks
                     .filter((item) =>
                       item.companyName.toLowerCase().includes(inputValue.toLowerCase()),
                     )

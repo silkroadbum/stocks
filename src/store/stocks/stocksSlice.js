@@ -20,7 +20,11 @@ const initialState = {
 export const stocksSlice = createSlice({
   name: 'stocks',
   initialState,
-  reducers: {},
+  reducers: {
+    updateList: (state, action) => {
+      state.stocks = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchStocks.pending, (state) => {
       state.status = 'loading';
@@ -34,5 +38,7 @@ export const stocksSlice = createSlice({
     });
   },
 });
+
+export const { updateList } = stocksSlice.actions;
 
 export default stocksSlice.reducer;
