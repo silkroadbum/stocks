@@ -183,7 +183,7 @@ body {
 }
 
 .button:disabled {
-  background-color: #eee;
+  background-color: #a9a6a6;
   border-color: #eee;
   color: #444;
   cursor: not-allowed;
