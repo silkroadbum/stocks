@@ -23,7 +23,9 @@ function Table({ filteredStocks, step }) {
           <thead>
             <tr className="row">
               {headers.map((item, i) => (
-                <th className="table__header">{item}</th>
+                <th key={i} className="table__header">
+                  {item}
+                </th>
               ))}
             </tr>
           </thead>

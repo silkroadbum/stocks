@@ -10,6 +10,7 @@ function App() {
   const { status, stocks } = useSelector((state) => state.stocks);
   const [inputValue, setInputValue] = useState('');
   const [step, setStep] = useState(0);
+  console.log(stocks);
 
   const onClickNext = () => {
     setStep((prev) => prev + 10);
