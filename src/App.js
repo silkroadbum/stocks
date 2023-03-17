@@ -10,7 +10,6 @@ function App() {
   const { status, stocks } = useSelector((state) => state.stocks);
   const [inputValue, setInputValue] = useState('');
   const [step, setStep] = useState(0);
-  console.log(stocks);
 
   const onClickNext = () => {
     setStep((prev) => prev + 10);
@@ -35,7 +34,7 @@ function App() {
 
   return (
     <div className="container">
-      <Search handleChange={onChangeInput} value={inputValue} />
+      <Search handleChange={onChangeInput} value={inputValue} setInputValue={setInputValue} />
       {status === 'loading' ? (
         <div className="loader-wrapper">
           <Watch
@@ -49,7 +48,7 @@ function App() {
         </div>
       ) : (
         <>
-          <Table filteredStocks={filteredStocks} step={step} />
+          <Table filteredStocks={stocks} step={step} inputValue={inputValue} />
           <div className="buttons">
             <Button handelClick={onClickPrev} disabled={step < 10} isPrev>
               PREV
