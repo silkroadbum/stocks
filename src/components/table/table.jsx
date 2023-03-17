@@ -1,18 +1,16 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import Row from '../row/row';
 import { headers } from '../../const';
 
 function Table({ filteredStocks, step, inputValue }) {
-  const [stocks, setStocks] = useState(filteredStocks);
-
   const handleOnDragEnd = (result) => {
-    const items = Array.from(stocks);
+    const items = Array.from(filteredStocks);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
-    setStocks(items);
+    filteredStocks = [...items];
   };
 
   return (
@@ -33,7 +31,7 @@ function Table({ filteredStocks, step, inputValue }) {
             <Droppable droppableId="table__body">
               {(provided) => (
                 <tbody className="table__body" {...provided.droppableProps} ref={provided.innerRef}>
-                  {stocks
+                  {filteredStocks
                     .filter((item) =>
                       item.companyName.toLowerCase().includes(inputValue.toLowerCase()),
                     )
