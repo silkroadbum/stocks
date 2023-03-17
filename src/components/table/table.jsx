@@ -5,14 +5,14 @@ import Row from '../row/row';
 import { headers } from '../../const';
 
 function Table({ filteredStocks, step }) {
-  const [newHeaders, updateNewHeaders] = useState(headers);
+  const [stocks, setStocks] = useState(filteredStocks);
 
   const handleOnDragEnd = (result) => {
-    const items = Array.from(newHeaders);
+    const items = Array.from(stocks);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
-    updateNewHeaders(items);
+    setStocks(items);
   };
 
   return (
@@ -21,34 +21,34 @@ function Table({ filteredStocks, step }) {
       <div className="table-wrapper">
         <table className="table">
           <thead>
-            <DragDropContext onDragEnd={handleOnDragEnd}>
-              <Droppable droppableId="row">
-                {(provided) => (
-                  <tr className="row" {...provided.droppableProps} ref={provided.innerRef}>
-                    {newHeaders.map((item, i) => (
-                      <Draggable key={item} draggableId={item} index={i}>
-                        {(provided) => (
-                          <th
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            ref={provided.innerRef}
-                            className="table__header">
-                            {item}
-                          </th>
-                        )}
-                      </Draggable>
-                    ))}
-                    {provided.placeholder}
-                  </tr>
-                )}
-              </Droppable>
-            </DragDropContext>
+            <tr className="row">
+              {headers.map((item, i) => (
+                <th className="table__header">{item}</th>
+              ))}
+            </tr>
           </thead>
-          <tbody>
-            {filteredStocks.slice(step, step + 10).map((obj, i) => (
-              <Row key={obj.symbol} index={i + 1 + step} {...obj} />
-            ))}
-          </tbody>
+          <DragDropContext onDragEnd={handleOnDragEnd}>
+            <Droppable droppableId="table__body">
+              {(provided) => (
+                <tbody className="table__body" {...provided.droppableProps} ref={provided.innerRef}>
+                  {stocks.slice(step, step + 10).map((obj, i) => (
+                    <Draggable key={obj.symbol} draggableId={obj.symbol} index={i}>
+                      {(provided) => (
+                        <tr
+                          className="table__row"
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          ref={provided.innerRef}>
+                          <Row index={i + 1 + step} {...obj} />
+                        </tr>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </tbody>
+              )}
+            </Droppable>
+          </DragDropContext>
         </table>
       </div>
     </>

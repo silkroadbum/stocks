@@ -10,10 +10,9 @@ function Row({
   peRatio,
   primaryExchange,
   currency,
-  refer,
 }) {
   return (
-    <tr ref={refer} className="table__row">
+    <>
       <td className="table__cell table__cell--xs-size">{index}</td>
       <td className="table__cell table__cell--m-size">{symbol}</td>
       <td className="table__cell table__cell--xl-size">{companyName}</td>
@@ -25,7 +24,7 @@ function Row({
       <td className="table__cell table__cell--s-size">{currency}</td>
       <td className="table__cell table__cell--xs-size">{peRatio}</td>
       <td className="table__cell">{primaryExchange}</td>
-    </tr>
+    </>
   );
 }
 
