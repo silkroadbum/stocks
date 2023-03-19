@@ -1,8 +1,8 @@
-function Button({ handelClick, children, isPrev, disabled }) {
+function Button({ handleClick, children, isPrev, disabled }) {
   return (
     <>
       <button
-        onClick={handelClick}
+        onClick={handleClick}
         className={`button ${isPrev ? 'button--prev' : 'button--next'}`}
         type="button"
         disabled={disabled}>

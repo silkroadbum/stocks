@@ -9,13 +9,39 @@ function Table({ step, inputValue }) {
   const dispatch = useDispatch();
   const { stocks } = useSelector((state) => state.stocks);
 
-  const handleOnDragEnd = (result) => {
-    const items = Array.from(stocks);
+  const onDragEnd = (result) => {
+    const items = stocks.slice();
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
     dispatch(updateList(items));
   };
+
+  const filteredStocks = stocks.filter((stock) =>
+    stock.companyName.toLowerCase().includes(inputValue.toLowerCase()),
+  );
+
+  const renderRows = () =>
+    filteredStocks.slice(step, step + 10).map((stock, index) => (
+      <Draggable key={stock.symbol} draggableId={stock.symbol} index={index}>
+        {(provided) => (
+          <tr
+            className="table__row"
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            ref={provided.innerRef}>
+            <Row index={index + 1 + step} {...stock} />
+          </tr>
+        )}
+      </Draggable>
+    ));
+
+  const renderHeaders = () =>
+    headers.map((header, index) => (
+      <th key={index} className="table__header">
+        {header}
+      </th>
+    ));
 
   return (
     <>
@@ -23,36 +49,13 @@ function Table({ step, inputValue }) {
       <div className="table-wrapper">
         <table className="table">
           <thead>
-            <tr className="row">
-              {headers.map((item, i) => (
-                <th key={i} className="table__header">
-                  {item}
-                </th>
-              ))}
-            </tr>
+            <tr className="row">{renderHeaders()}</tr>
           </thead>
-          <DragDropContext onDragEnd={handleOnDragEnd}>
+          <DragDropContext onDragEnd={onDragEnd}>
             <Droppable droppableId="table__body">
               {(provided) => (
                 <tbody className="table__body" {...provided.droppableProps} ref={provided.innerRef}>
-                  {stocks
-                    .filter((item) =>
-                      item.companyName.toLowerCase().includes(inputValue.toLowerCase()),
-                    )
-                    .slice(step, step + 10)
-                    .map((obj, i) => (
-                      <Draggable key={obj.symbol} draggableId={obj.symbol} index={i}>
-                        {(provided) => (
-                          <tr
-                            className="table__row"
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            ref={provided.innerRef}>
-                            <Row index={i + 1 + step} {...obj} />
-                          </tr>
-                        )}
-                      </Draggable>
-                    ))}
+                  {renderRows()}
                   {provided.placeholder}
                 </tbody>
               )}

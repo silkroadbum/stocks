@@ -48,13 +48,13 @@ function App() {
         </div>
       ) : (
         <>
-          <Table filteredStocks={stocks} step={step} inputValue={inputValue} />
+          <Table step={step} inputValue={inputValue} />
           <div className="buttons">
             <Button handelClick={onClickPrev} disabled={step < 10} isPrev>
               PREV
             </Button>
             <Button
-              handelClick={onClickNext}
+              handleClick={onClickNext}
               disabled={filteredStocks.length - step <= 10}
               isPrev={false}>
               NEXT
